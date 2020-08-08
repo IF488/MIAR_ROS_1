@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+    <robot name="mymesh">
+      <link name="mesh_link">
+        <visual>
+          <geometry>
+            <mesh filename="package://udm_urdf/mesh/urdf_mesh_example.stl"/>
+          </geometry>
+        </visual>
+      </link>
+   </robot>

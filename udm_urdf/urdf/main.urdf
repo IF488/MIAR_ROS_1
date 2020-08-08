@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot name="main">
+ 
+  <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+ 
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+   </material>
+ 
+ 
+  <link name="index">
+    <visual>
+     <origin xyz="-0.045 0 0.112"/>
+      <geometry>
+        <cylinder length="0.12" radius="0.01"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+ 
+  <link name="paume">
+    <visual>
+      <geometry>
+        <box size="0.12 0.02 0.12"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+   </link>
+ 
+   <joint name="index_to_base" type="revolute">
+     <parent link="paume"/>
+     <child link="index"/>
+     <axis xyz="0 1 0" />
+     <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5" />
+     <origin xyz="-0.045 0 0.062"/>
+   </joint>
+
+  <link name="petit">
+    <visual>
+     <origin xyz="0.045 0 0.122"/>
+      <geometry>
+        <cylinder length="0.12" radius="0.01"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+   <joint name="petit_to_base" type="revolute">
+     <axis xyz="0 1 0" />
+     <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5" />
+     <parent link="paume"/>
+     <child link="petit"/>
+     <origin xyz="0.045 0 0.062"/>
+   </joint>
+
+  <link name="pouce">
+    <visual>
+     <origin rpy="0 0.7 0" xyz="0.09 0 -0.02"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.014"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+   <joint name="pouce_to_base" type="fixed">
+     <parent link="paume"/>
+     <child link="pouce"/>
+     <origin xyz="-0.061 0 -0.05"/>
+   </joint>
+ 
+</robot>

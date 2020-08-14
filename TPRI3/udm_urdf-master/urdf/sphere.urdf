@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot name="index">
+
+	<material name="orange">
+		<color rgba="1 0.5 0 1"/>
+	</material>
+	<material name="gold">
+		<color rgba="1 0.7 0 1"/>
+	</material>
+	<material name="coral">
+		<color rgba="1 0.5 0.2 1"/>
+	</material>
+
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<sphere radius="0.10"/>
+			</geometry>
+			<material name="coral"/>
+		</visual>
+	</link>
+</robot>
+

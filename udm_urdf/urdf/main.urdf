@@ -1,74 +1,273 @@
 <?xml version="1.0"?>
-<robot name="main">
- 
-  <material name="blue">
-    <color rgba="0 0 0.8 1"/>
-  </material>
- 
-  <material name="white">
-    <color rgba="1 1 1 1"/>
-   </material>
- 
- 
-  <link name="index">
-    <visual>
-     <origin xyz="-0.045 0 0.112"/>
-      <geometry>
-        <cylinder length="0.12" radius="0.01"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-  </link>
- 
-  <link name="paume">
-    <visual>
-      <geometry>
-        <box size="0.12 0.02 0.12"/>
-      </geometry>
-      <material name="white"/>
-    </visual>
-   </link>
- 
-   <joint name="index_to_base" type="revolute">
-     <parent link="paume"/>
-     <child link="index"/>
-     <axis xyz="0 1 0" />
-     <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5" />
-     <origin xyz="-0.045 0 0.062"/>
-   </joint>
+<robot name="index">
+	<material name="green">
+		<color rgba="0 1 0.3 1"/>
+	</material>
+	<material name="gold">
+		<color rgba="1 0.7 0 1"/>
+	</material>
+	<material name="blue">
+		<color rgba="0 0.4 1 1"/>
+	</material>
+	<material name="red">
+		<color rgba="1 0 0 1"/>
+	</material>
 
-  <link name="petit">
-    <visual>
-     <origin xyz="0.045 0 0.122"/>
-      <geometry>
-        <cylinder length="0.12" radius="0.01"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-  </link>
 
-   <joint name="petit_to_base" type="revolute">
-     <axis xyz="0 1 0" />
-     <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5" />
-     <parent link="paume"/>
-     <child link="petit"/>
-     <origin xyz="0.045 0 0.062"/>
-   </joint>
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<box size="0.08 0.03 0.10 " />
+			</geometry>
+			<material name="gold"/>
+		</visual>
+	</link>
+	<!-- Index -->
+	<link name="index_phalange_base">
+		<visual>
+			<geometry>
+				<cylinder length="0.03" radius="0.01"/>
+			</geometry>
+			<material name="blue"/>
+			<origin xyz="0 0 0.015"/>
+		</visual>
+	</link>
 
-  <link name="pouce">
-    <visual>
-     <origin rpy="0 0.7 0" xyz="0.09 0 -0.02"/>
-      <geometry>
-        <cylinder length="0.1" radius="0.014"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-  </link>
+	<link name="index_phalange_middle">
+		<visual>
+			<geometry>
+				<cylinder length="0.025" radius="0.009"/>
+			</geometry>
+			<material name="green"/>
+			<origin xyz="0 0 0.0125"/>
+		</visual>
+	</link>
 
-   <joint name="pouce_to_base" type="fixed">
-     <parent link="paume"/>
-     <child link="pouce"/>
-     <origin xyz="-0.061 0 -0.05"/>
-   </joint>
- 
+	<link name="index_phalange_end">
+		<visual>
+			<geometry>
+				<cylinder length="0.025" radius="0.007"/>
+			</geometry>
+			<material name="red"/>
+			<origin xyz="0 0 0.0125"/>
+		</visual>
+	</link>
+	
+
+	<joint name="base_link_to_index_base" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="base_link"/>
+		<child link="index_phalange_base"/>
+		<limit effort="1000" upper="1.57" lower="-1.65" velocity="0.5"/>
+		<origin xyz="0.03 0.0 0.05"/>
+	</joint>
+	<joint name="index_base_to_middle" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="index_phalange_base"/>
+		<child link="index_phalange_middle"/>
+		<limit effort="1000" upper="0" lower="-1.65" velocity="0.5"/>
+		<origin xyz="0.0 0.0 0.03"/>
+	</joint>
+	<joint name="index_middle_to_end" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="index_phalange_middle"/>
+		<child link="index_phalange_end"/>
+		<limit effort="1000" upper="0" lower="-1.57" velocity="0.5"/>
+		<origin xyz="0.0 0.0 0.025"/>
+	</joint>
+<!-- annulaire -->
+<link name="ring_phalange_base">
+		<visual>
+			<geometry>
+				<cylinder length="0.03" radius="0.01"/>
+			</geometry>
+			<material name="blue"/>
+			<origin xyz="0 0 0.015"/>
+		</visual>
+	</link>
+
+	<link name="ring_phalange_middle">
+		<visual>
+			<geometry>
+				<cylinder length="0.025" radius="0.009"/>
+			</geometry>
+			<material name="green"/>
+			<origin xyz="0 0 0.0125"/>
+		</visual>
+	</link>
+
+	<link name="ring_phalange_end">
+		<visual>
+			<geometry>
+				<cylinder length="0.025" radius="0.007"/>
+			</geometry>
+			<material name="red"/>
+			<origin xyz="0 0 0.0125"/>
+		</visual>
+	</link>
+	
+
+	<joint name="base_link_to_ring_base" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="base_link"/>
+		<child link="ring_phalange_base"/>
+		<limit effort="1000" upper="1.57" lower="-1.65" velocity="0.5"/>
+		<origin xyz="-0.015 0.0 0.05"/>
+	</joint>
+	<joint name="ring_base_to_middle" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="ring_phalange_base"/>
+		<child link="ring_phalange_middle"/>
+		<limit effort="1000" upper="0" lower="-1.65" velocity="0.5"/>
+		<origin xyz="0.0 0.0 0.03"/>
+	</joint>
+	<joint name="ring_middle_to_end" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="ring_phalange_middle"/>
+		<child link="ring_phalange_end"/>
+		<limit effort="1000" upper="0" lower="-1.57" velocity="0.5"/>
+		<origin xyz="0.0 0.0 0.025"/>
+	</joint>
+
+
+	<!-- majeur -->
+	<link name="middle_phalange_base">
+		<visual>
+			<geometry>
+				<cylinder length="0.03" radius="0.01"/>
+			</geometry>
+			<material name="blue"/>
+			<origin xyz="0 0 0.015"/>
+		</visual>
+	</link>
+
+	<link name="middle_phalange_middle">
+		<visual>
+			<geometry>
+				<cylinder length="0.03" radius="0.009"/>
+			</geometry>
+			<material name="green"/>
+			<origin xyz="0 0 0.015"/>
+		</visual>
+	</link>
+
+	<link name="middle_phalange_end">
+		<visual>
+			<geometry>
+				<cylinder length="0.03" radius="0.007"/>
+			</geometry>
+			<material name="red"/>
+			<origin xyz="0 0 0.015"/>
+		</visual>
+	</link>
+	
+
+	<joint name="base_link_to_middle_base" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="base_link"/>
+		<child link="middle_phalange_base"/>
+		<limit effort="1000" upper="1.57" lower="-1.65" velocity="0.5"/>
+		<origin xyz="0.008 0.0 0.05"/>
+	</joint>
+	<joint name="middle_base_to_middle" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="middle_phalange_base"/>
+		<child link="middle_phalange_middle"/>
+		<limit effort="1000" upper="0" lower="-1.65" velocity="0.5"/>
+		<origin xyz="0.0 0.0 0.03"/>
+	</joint>
+	<joint name="middle_middle_to_end" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="middle_phalange_middle"/>
+		<child link="middle_phalange_end"/>
+		<limit effort="1000" upper="0" lower="-1.57" velocity="0.5"/>
+		<origin xyz="0.0 0.0 0.03"/>
+	</joint>
+	<!-- Pinky -->
+	<link name="pinky_phalange_base">
+		<visual>
+			<geometry>
+				<cylinder length="0.02" radius="0.005"/>
+			</geometry>
+			<material name="blue"/>
+			<origin xyz="0 0 0.01"/>
+		</visual>
+	</link>
+
+	<link name="pinky_phalange_middle">
+		<visual>
+			<geometry>
+				<cylinder length="0.02" radius="0.005"/>
+			</geometry>
+			<material name="green"/>
+			<origin xyz="0 0 0.010"/>
+		</visual>
+	</link>
+
+	<link name="pinky_phalange_end">
+		<visual>
+			<geometry>
+				<cylinder length="0.02" radius="0.005"/>
+			</geometry>
+			<material name="red"/>
+			<origin xyz="0 0 0.010"/>
+		</visual>
+	</link>
+	
+
+	<joint name="base_link_to_pinky_base" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="base_link"/>
+		<child link="pinky_phalange_base"/>
+		<limit effort="1000" upper="1.57" lower="-1.65" velocity="0.5"/>
+		<origin xyz="-0.035 0.0 0.05"/>
+	</joint>
+	<joint name="pinky_base_to_middle" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="pinky_phalange_base"/>
+		<child link="pinky_phalange_middle"/>
+		<limit effort="1000" upper="0" lower="-1.65" velocity="0.5"/>
+		<origin xyz="0.0 0.0 0.02"/>
+	</joint>
+	<joint name="pinky_middle_to_end" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="pinky_phalange_middle"/>
+		<child link="pinky_phalange_end"/>
+		<limit effort="1000" upper="0" lower="-1.57" velocity="0.5"/>
+		<origin xyz="0.0 0.0 0.02"/>
+	</joint>
+
+<!--Thumb-->
+	<link name="thumb_phalange_base">
+			<visual>
+				<geometry>
+					<cylinder length="0.03" radius="0.01"/>
+				</geometry>
+				<material name="blue"/>
+				<origin xyz="0 0 0.0150"/>
+			</visual>
+	</link>
+	<link name="thumb_phalange_end">
+			<visual>
+				<geometry>
+					<cylinder length="0.02" radius="0.009"/>
+				</geometry>
+				<material name="red"/>
+				<origin xyz="0 0 0.01"/>
+			</visual>
+	</link>
+	<joint name="thumb_base_palm" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="base_link"/>
+		<child link="thumb_phalange_base"/>
+		<origin xyz="0.04 0 -0.025" rpy="0 1.57 0"/>
+		<limit effort="1000" upper="0" lower="-1.57" velocity="0.5"/>
+	</joint>
+	<joint name="thumb_end_to_thumb_base" type="revolute">
+		<axis xyz="1 0 0"/>
+		<parent link="thumb_phalange_base"/>
+		<child link="thumb_phalange_end"/>
+		<origin xyz="0 0 0.03" rpy="0 0 0"/>
+		<limit effort="1000" upper="0" lower="-1.0" velocity="0.5"/>
+	</joint>
 </robot>

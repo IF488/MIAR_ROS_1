@@ -21,3 +21,21 @@ Pour visualiser, il faut executer le code suivant dans le terminal de votre wors
 ```
 roslauch udm_urdf visualize_urdf.launch  model:='$(find udm_urdf)/urdf/main.urdf'
 ```
+## TPRI3
+Ce folder contient trois package pour le TP "Animer un urdf via Move it". 
+
+### Installation
+Pour installer ces noeuds, il faut placer les trois packages se trouvant dans le fichier TPRI3 dans le dossier src de votre catkin workspace. 
+
+### Execution
+Pour executer il faut ouvrir deux terminal a partir de votre catkin workspace, dans le premier terminal executer le code suivant:
+
+```
+roslaunch udm_hand_moveit_config demo.launch
+```
+
+Dans le deuxième terminal exécuter le code suivant:
+
+```
+rosrun udm_hand_control TPRI3.py
+```

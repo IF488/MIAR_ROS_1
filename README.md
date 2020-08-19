@@ -37,5 +37,5 @@ roslaunch udm_hand_moveit_config demo.launch
 Dans le deuxième terminal exécuter le code suivant:
 
 ```
-rosrun udm_hand_control TPRI3.py
+roslaunch udm_hand_control direct_cinematique.launch
 ```

@@ -102,7 +102,7 @@ class MoveGroupPythonIntefaceTutorial(object):
     ## If you are using a different robot, change this value to the name of your robot
     ## arm planning group.
     ## This interface can be used to plan and execute motions:
-    group_name = "pinky"
+    group_name = "thumb"
     move_group = moveit_commander.MoveGroupCommander(group_name)
 
     ## Create a `DisplayTrajectory`_ ROS publisher which is used to display
@@ -161,9 +161,9 @@ class MoveGroupPythonIntefaceTutorial(object):
     ## thing we want to do is move it to a slightly better configuration.
     # We can get the joint values from the group and adjust some of the values:
     joint_goal = move_group.get_current_joint_values()
-    joint_goal[0] = 0
-    joint_goal[1] = 0
-    joint_goal[2] = 0
+    joint_goal[0] = -0.8
+    joint_goal[1] = -0.8
+    #joint_goal[2] = -0.8
     #joint_goal[3] = -pi/2
     #joint_goal[4] = 0
     #joint_goal[5] = pi/3

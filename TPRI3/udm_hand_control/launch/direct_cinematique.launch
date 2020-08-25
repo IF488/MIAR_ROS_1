@@ -1,9 +1,0 @@
-<launch>
-
-<node name="index" pkg="udm_hand_control" type="direct_index.py" />
-<node name="middle" pkg="udm_hand_control" type="direct_middle.py" />
-<node name="ring" pkg="udm_hand_control" type="direct_ring.py" />
-<node name="pinky" pkg="udm_hand_control" type="direct_pinky.py" />
-<node name="thumb" pkg="udm_hand_control" type="direct_thumb.py" />
-
-</launch>
